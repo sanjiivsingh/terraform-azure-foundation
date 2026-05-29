@@ -4,7 +4,11 @@ Reusable Azure Infrastructure using Terraform.
 
 ## Current Status
 
-Project initialized.
+
+- Repository structure created
+- Documentation structure created
+- Development root module created
+- Resource Group module skeleton created
 
 ## Planned Modules
 

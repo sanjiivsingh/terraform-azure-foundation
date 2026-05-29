@@ -1,12 +1,19 @@
 # Terraform Modules
 
-Reusable Terraform child modules.
+Reusable child modules used by environment root modules.
 
-Planned modules:
+## Planned Modules
 
 - resource_group
 - storage_account
 - vnet
 - subnet
 - nsg
-- vm
+- virtual_machine
+
+## Design Principles
+
+- Reusable
+- Generic
+- Environment agnostic
+- Dependency driven
