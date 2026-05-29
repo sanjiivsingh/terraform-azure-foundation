@@ -41,7 +41,7 @@ Tags are optional and can be omitted when not required.
 ## Planned Output Structure
 
 ```hcl
-rg_details = {
+resource_group_details = {
 
   rg1 = {
 
