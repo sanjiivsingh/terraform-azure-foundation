@@ -1,33 +1,73 @@
 # Development Environment
 
-This folder represents the Development environment.
+Development environment root module.
 
-In Terraform terminology, this folder acts as the Root Module.
+## Purpose
 
-Development environment configured for Resource Group deployment.
+Deploys Azure infrastructure using reusable child modules.
 
-## Files
+Currently deployed:
 
-| File | Purpose |
-|--------|----------|
-| provider.tf | Azure provider configuration |
-| versions.tf | Terraform and provider version constraints |
-| main.tf | Calls child modules |
-| variables.tf | Variable declarations |
-| terraform.tfvars | Environment-specific values |
+- Resource Groups
 
-## Flow
+---
 
-Developer
-    ↓
+## Architecture
+
+terraform.tfvars
+      |
+      V
+variables.tf
+      |
+      V
+main.tf
+      |
+      V
+module.resource_group
+      |
+      V
+Azure Resource Groups
+
+---
+
+## Deployment
+
+### Initialize
+
+terraform init
+
+### Validate
+
+terraform validate
+
+### Plan
+
+terraform plan
+
+### Apply
+
 terraform apply
-    ↓
-Development Root Module
-    ↓
-Child Modules
-    ↓
-Azure Resources
 
-## Implemented Modules
+---
 
-- Resource Group
+## Current Deployment
+
+| Resource | Status |
+|-----------|----------|
+| Resource Group Module | Completed |
+
+---
+
+## Resource Groups
+
+rg-dev-eastus
+rg-dev-southindia
+
+---
+
+## Backend
+
+Azure Storage Account Backend
+
+State File:
+gitazurefoundationrepo.tfstate
