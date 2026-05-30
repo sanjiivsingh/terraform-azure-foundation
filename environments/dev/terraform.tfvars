@@ -1,6 +1,6 @@
 resource_groups = {
-  rg-dev-eu = {
-    name     = "rg-dev-eastus-1"
+  rg-dev-eastus = {
+    name     = "rg-dev-eastus"
     location = "eastus"
     tags = {
       managed_by  = "Terraform"
@@ -8,8 +8,8 @@ resource_groups = {
       project     = "terraform azure foundation"
     }
   }
-  rg-dev-si = {
-    name     = "rg2-dev-southindia-1"
+  rg-dev-southindia = {
+    name     = "rg-dev-southindia"
     location = "southindia"
     tags = {
       managed_by  = "Terraform"
