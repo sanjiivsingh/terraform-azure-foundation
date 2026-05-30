@@ -12,7 +12,7 @@ Planned Resources:
 
 - azurerm_resource_group
 
-## Planned Input Structure
+## Input Structure
 
 ```hcl
 resource_groups = {
@@ -38,7 +38,7 @@ resource_groups = {
 
 Tags are optional and can be omitted when not required.
 
-## Planned Output Structure
+## Output Structure
 
 ```hcl
 resource_group_details = {

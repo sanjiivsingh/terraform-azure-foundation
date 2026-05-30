@@ -11,7 +11,7 @@ variable "resource_groups" {
 
     condition = alltrue([
       for rg in var.resource_groups :
-      length(trim(rg.name)) > 0
+      length(trimspace(rg.name)) > 0
     ])
 
     error_message = "Resource Group name cannot be empty."

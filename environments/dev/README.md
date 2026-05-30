@@ -4,6 +4,8 @@ This folder represents the Development environment.
 
 In Terraform terminology, this folder acts as the Root Module.
 
+Development environment configured for Resource Group deployment.
+
 ## Files
 
 | File | Purpose |
@@ -25,3 +27,7 @@ Development Root Module
 Child Modules
     ↓
 Azure Resources
+
+## Implemented Modules
+
+- Resource Group
