@@ -54,18 +54,34 @@ terraform apply
 
 ---
 
-## Current Deployment
+## Deployed Resources
 
-| Resource | Status |
-|-----------|----------|
-| Resource Group Module | Completed |
+### Resource Groups
 
----
+| Name              |
+| ----------------- |
+| rg-dev-eastus     |
+| rg-dev-southindia |
 
-## Resource Groups
+### Storage Accounts
 
-rg-dev-eastus
-rg-dev-southindia
+| Name       | Resource Group | Location |
+| ---------- | -------------- | -------- |
+| stdevsa001 | rg-dev-eastus  | eastus   |
+
+### Validation
+
+The development environment has been validated using:
+
+* terraform fmt
+* terraform validate
+* terraform plan
+* terraform apply
+
+Deployment screenshots are available under:
+
+docs/screenshots/
+
 
 ---
 
