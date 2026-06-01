@@ -23,8 +23,7 @@ variable "storage_accounts" {
   type = map(object({
 
     name                     = string
-    resource_group_name      = string
-    location                 = string
+    rgkey                    = string
     account_tier             = string
     account_replication_type = string
 
@@ -70,25 +69,14 @@ variable "storage_accounts" {
     error_message = "Invalid replication type. Allowed values: LRS, GRS, RAGRS, ZRS, GZRS, RAGZRS."
   }
 
-  # resource group name validation
-  validation {
+  # resource group key name validation
+validation {
 
-    condition = alltrue([
-      for sa in var.storage_accounts :
-      length(trimspace(sa.resource_group_name)) > 0
-    ])
+  condition = alltrue([
+    for sa in var.storage_accounts :
+    contains(keys(var.resource_groups), sa.rgkey)
+  ])
 
-    error_message = "resource_group_name cannot be empty."
-  }
-
-  #location name empty : validation
-  validation {
-
-    condition = alltrue([
-      for sa in var.storage_accounts :
-      length(trimspace(sa.location)) > 0
-    ])
-
-    error_message = "location cannot be empty."
-  }
+  error_message = "Storage account rgkey must exist in resource_groups."
+}
 }

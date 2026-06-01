@@ -25,8 +25,7 @@ storage_accounts = {
 
   stdev001 = {
     name                     = "stdevsa001"
-    resource_group_name      = "rg-dev-eastus"
-    location                 = "eastus"
+    rgkey                    = "rg-dev-eastus"
     account_tier             = "Standard"
     account_replication_type = "LRS"
 

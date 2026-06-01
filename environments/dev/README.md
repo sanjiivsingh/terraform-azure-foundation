@@ -89,10 +89,32 @@ depends_on = [
 
 ### Implicit Dependency
 
-Dependencies are automatically inferred when module outputs are referenced by other modules.
+This environment demonstrates Terraform's implicit dependency mechanism.
 
-This is the preferred Terraform design pattern and is recommended whenever Terraform can determine the dependency relationship automatically.
+Storage Accounts reference a logical Resource Group key instead of directly specifying:
 
+resource_group_name
+location
+
+Example:
+
+storage_accounts = {
+  stdev001 = {
+    rgkey = "rg-dev-eastus"
+  }
+}
+
+The local value transformation resolves the key:
+
+rgkey
+  ↓
+resource group outputs
+  ↓
+storage account inputs
+
+This automatically creates a dependency between the Resource Group module and Storage Account module.
+
+No explicit depends_on statement is required.
 
 ### Validation
 

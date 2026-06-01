@@ -31,16 +31,51 @@ Features:
 | account_replication_type | string      | Yes      | LRS, GRS, ZRS, etc   |
 | tags                     | map(string) | No       | Resource tags        |
 
-## Dependency Patterns
+## Dependency Patterns Demonstrated
 
-This module can be consumed using:
+This module is used to demonstrate multiple Terraform dependency management approaches.
 
-1. Standalone deployment
-2. Explicit dependency using depends_on
-3. Implicit dependency using module outputs
+### Standalone Deployment
 
-Current Demonstration:
-- Explicit Dependency
+The Storage Account receives all required values directly from input variables.
+
+Example:
+
+* resource_group_name
+* location
+
+are supplied directly through configuration.
+
+### Explicit Dependency
+
+The root module uses:
+
+```hcl
+depends_on = [module.resource_group]
+```
+
+to force deployment ordering.
+
+### Implicit Dependency
+
+The root module consumes Resource Group outputs inside a local value transformation.
+
+Example flow:
+
+```text
+terraform.tfvars
+      ↓
+storage_accounts.rgkey
+      ↓
+locals.tf
+      ↓
+module.resource_group.outputs
+      ↓
+module.storage_account
+```
+
+Terraform automatically determines deployment order without using depends_on.
+
 
 ## Validation Rules
 
