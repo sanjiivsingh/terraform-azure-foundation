@@ -35,7 +35,8 @@ This repository is being developed as a reusable Azure foundation framework foll
 
 ### In Progress
 
-* Storage Account Module
+## Storage Account
+Status: 🚧 In Progress
 
 ---
 
@@ -80,7 +81,7 @@ modules/resource_group
 | Module          | Status      |
 | --------------- | ----------- |
 | Resource Group  | ✅ Completed |
-| Storage Account | ⏳ Planned   |
+| Storage Account | 🚧 In Progress |
 | VNet            | ⏳ Planned   |
 | Subnet          | ⏳ Planned   |
 | NSG             | ⏳ Planned   |
