@@ -69,19 +69,52 @@ terraform apply
 | ---------- | -------------- | -------- |
 | stdevsa001 | rg-dev-eastus  | eastus   |
 
-## Dependency Demonstrations
+## Terraform Dependency Demonstrations
+
+This repository demonstrates multiple Terraform dependency management patterns.
+
+### Standalone Deployment
+
+Resources are deployed independently without module dependencies.
 
 ### Explicit Dependency
 
-The storage account module explicitly depends on the resource group module.
+Dependencies are enforced using:
 
-Example:
-
+```hcl
 depends_on = [
   module.resource_group
 ]
+```
 
-This pattern is demonstrated for educational purposes.
+### Implicit Dependency
+
+This environment demonstrates Terraform's implicit dependency mechanism.
+
+Storage Accounts reference a logical Resource Group key instead of directly specifying:
+
+resource_group_name
+location
+
+Example:
+
+storage_accounts = {
+  stdev001 = {
+    rgkey = "rg-dev-eastus"
+  }
+}
+
+The local value transformation resolves the key:
+
+rgkey
+  ↓
+resource group outputs
+  ↓
+storage account inputs
+
+This automatically creates a dependency between the Resource Group module and Storage Account module.
+
+No explicit depends_on statement is required.
 
 ### Validation
 

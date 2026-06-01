@@ -35,10 +35,37 @@ Status: 🚧 In Progress
 
 Dependency Demonstrations
 
-- Storage Account (Standalone) | ✅ Completed |
-- Storage Account (Explicit Dependency) 🚧
-- Storage Account (Implicit Dependency) ⏳
+| Storage Account (Standalone)          | ✅ Completed |
+| Storage Account (Explicit Dependency) | ✅ Completed |
+| Storage Account (Implicit Dependency) | ✅ Completed |
 ---
+
+## Dependency Management Patterns
+
+This repository demonstrates multiple Terraform dependency management approaches.
+
+### 1. Standalone Deployment
+
+Resources receive all required configuration directly through input variables.
+
+### 2. Explicit Dependency
+
+Resources are ordered using:
+
+```hcl
+depends_on
+```
+
+to enforce deployment sequencing.
+
+### 3. Implicit Dependency
+
+Resources consume outputs from other modules through local value transformations.
+
+Terraform automatically builds the dependency graph without manual dependency declarations.
+
+This is the preferred Terraform approach because it scales better and keeps module contracts clean.
+
 
 ## Implemented Modules
 
@@ -80,17 +107,18 @@ Status: ✅ Completed
 
 ## Progress Tracker
 
-| Module          | Status      |
-| --------------- | ----------- |
-| Resource Group  | ✅ Completed |
+| Module | Status |
+|----------|----------|
+| Resource Group | ✅ Completed |
 | Storage Account | ✅ Completed |
-| VNet            | ⏳ Planned   |
-| Subnet          | ⏳ Planned   |
-| NSG             | ⏳ Planned   |
-| Public IP       | ⏳ Planned   |
-| NIC             | ⏳ Planned   |
-| VM              | ⏳ Planned   |
-
+| Explicit Dependency Demo | ✅ Completed |
+| Implicit Dependency Demo | ✅ Completed |
+| VNet | ⏳ Planned |
+| Subnet | ⏳ Planned |
+| NSG | ⏳ Planned |
+| Public IP | ⏳ Planned |
+| NIC | ⏳ Planned |
+| VM | ⏳ Planned |
 ---
 
 ## Repository Structure
