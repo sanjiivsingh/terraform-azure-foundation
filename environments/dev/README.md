@@ -6,9 +6,13 @@ Development environment root module.
 
 Deploys Azure infrastructure using reusable child modules.
 
-Currently deployed:
+Implemented Modules
 
-- Resource Groups
+- Resource Group
+
+Modules Under Development
+
+- Storage Account
 
 ---
 
