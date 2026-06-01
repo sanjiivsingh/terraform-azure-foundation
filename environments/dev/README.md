@@ -69,6 +69,20 @@ terraform apply
 | ---------- | -------------- | -------- |
 | stdevsa001 | rg-dev-eastus  | eastus   |
 
+## Dependency Demonstrations
+
+### Explicit Dependency
+
+The storage account module explicitly depends on the resource group module.
+
+Example:
+
+depends_on = [
+  module.resource_group
+]
+
+This pattern is demonstrated for educational purposes.
+
 ### Validation
 
 The development environment has been validated using:
