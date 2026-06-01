@@ -32,8 +32,12 @@ This repository is being developed as a reusable Azure foundation framework foll
 
 ## Storage Account
 Status: 🚧 In Progress
-v1 : | Storage Account | ✅ Completed |
 
+Dependency Demonstrations
+
+- Storage Account (Standalone) | ✅ Completed |
+- Storage Account (Explicit Dependency) 🚧
+- Storage Account (Implicit Dependency) ⏳
 ---
 
 ## Implemented Modules

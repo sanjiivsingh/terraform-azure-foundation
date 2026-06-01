@@ -31,6 +31,17 @@ Features:
 | account_replication_type | string      | Yes      | LRS, GRS, ZRS, etc   |
 | tags                     | map(string) | No       | Resource tags        |
 
+## Dependency Patterns
+
+This module can be consumed using:
+
+1. Standalone deployment
+2. Explicit dependency using depends_on
+3. Implicit dependency using module outputs
+
+Current Demonstration:
+- Explicit Dependency
+
 ## Validation Rules
 
 * Storage Account names must be lowercase alphanumeric
