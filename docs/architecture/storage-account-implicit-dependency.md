@@ -159,6 +159,21 @@ module.resource_group.resource_group_details[value.rgkey]
 Terraform discovers the dependency automatically.
 
 ---
+## Validation Evidence
+
+### Terraform Plan
+
+Terraform plan confirms that Resource Groups and Storage Accounts will be created successfully through module output references without using explicit depends_on.
+
+Screenshot:
+docs/screenshots/storage_account/storage-account-terraform-plan-v1.png
+
+### Dependency Graph
+
+Terraform dependency graph confirms that Terraform automatically establishes the relationship between Resource Group and Storage Account modules through data references.
+
+Screenshot:
+docs/screenshots/storage_account/implicit-dependency-graph.svg
 
 ## Conclusion
 
