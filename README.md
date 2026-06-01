@@ -35,9 +35,9 @@ Status: 🚧 In Progress
 
 Dependency Demonstrations
 
-- Storage Account (Standalone) | ✅ Completed |
-- Storage Account (Explicit Dependency) 🚧
-- Storage Account (Implicit Dependency) ⏳
+| Storage Account (Standalone)          | ✅ Completed |
+| Storage Account (Explicit Dependency) | ✅ Completed |
+| Storage Account (Implicit Dependency) | ......... 🚧 |
 ---
 
 ## Implemented Modules
@@ -80,17 +80,18 @@ Status: ✅ Completed
 
 ## Progress Tracker
 
-| Module          | Status      |
-| --------------- | ----------- |
-| Resource Group  | ✅ Completed |
+| Module | Status |
+|----------|----------|
+| Resource Group | ✅ Completed |
 | Storage Account | ✅ Completed |
-| VNet            | ⏳ Planned   |
-| Subnet          | ⏳ Planned   |
-| NSG             | ⏳ Planned   |
-| Public IP       | ⏳ Planned   |
-| NIC             | ⏳ Planned   |
-| VM              | ⏳ Planned   |
-
+| Explicit Dependency Demo | ✅ Completed |
+| Implicit Dependency Demo | 🚧 In Progress |
+| VNet | ⏳ Planned |
+| Subnet | ⏳ Planned |
+| NSG | ⏳ Planned |
+| Public IP | ⏳ Planned |
+| NIC | ⏳ Planned |
+| VM | ⏳ Planned |
 ---
 
 ## Repository Structure
