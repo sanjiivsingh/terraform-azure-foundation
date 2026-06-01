@@ -10,20 +10,58 @@ This module is being developed as part of the Terraform Azure Foundation project
 
 ## Current Status
 
-🚧 In Development
+✅ Implemented
 
-Current Phase:
+Features:
 
-* Module contract design
-* Architecture design
-* Documentation
+* Multiple Storage Account deployment using for_each
+* Input validation
+* Tag support
+* Module outputs
+* Reusable module design
 
-Upcoming Phases:
+## Inputs
 
-* Standalone implementation
-* Explicit dependency implementation
-* Implicit dependency implementation
-* Deployment verification
+| Variable                 | Type        | Required | Description          |
+| ------------------------ | ----------- | -------- | -------------------- |
+| name                     | string      | Yes      | Storage Account name |
+| resource_group_name      | string      | Yes      | Resource Group name  |
+| location                 | string      | Yes      | Azure region         |
+| account_tier             | string      | Yes      | Standard or Premium  |
+| account_replication_type | string      | Yes      | LRS, GRS, ZRS, etc   |
+| tags                     | map(string) | No       | Resource tags        |
+
+## Validation Rules
+
+* Storage Account names must be lowercase alphanumeric
+* Storage Account names must be between 3 and 24 characters
+* Resource Group name cannot be empty
+* Location cannot be empty
+* Account Tier must be Standard or Premium
+* Replication Type must be a supported Azure value
+
+## Outputs
+
+storage_account_details
+
+Returns:
+
+* name
+* id
+* location
+* primary_blob_endpoint
+
+## Example Usage
+
+```hcl
+module "storage_account" {
+
+  source = "../../modules/storage_account"
+
+  storage_accounts = var.storage_accounts
+}
+```
+
 
 ---
 
