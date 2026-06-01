@@ -21,22 +21,18 @@ This repository is being developed as a reusable Azure foundation framework foll
 
 ### Completed
 
-* Repository Structure
-* Architecture Documentation
-* Module Design Standards
-* Development Environment
-* Resource Group Module
-* Input Validation
-* Module Outputs
-* Resource Deployment
-* Deployment Verification
-* Git Feature Branch Workflow
-* Pull Request Workflow
+- Repository Structure
+- Architecture Documentation
+- Resource Group Module
+- Development Environment
+- Module Validation
+- Storage Account Module
 
 ### In Progress
 
 ## Storage Account
 Status: 🚧 In Progress
+v1 : | Storage Account | ✅ Completed |
 
 ---
 
@@ -61,7 +57,9 @@ Module Location:
 ```text
 modules/resource_group
 ```
+### Storage Account Module
 
+Status: ✅ Completed
 ---
 
 ## Planned Modules
@@ -81,7 +79,7 @@ modules/resource_group
 | Module          | Status      |
 | --------------- | ----------- |
 | Resource Group  | ✅ Completed |
-| Storage Account | 🚧 In Progress |
+| Storage Account | ✅ Completed |
 | VNet            | ⏳ Planned   |
 | Subnet          | ⏳ Planned   |
 | NSG             | ⏳ Planned   |
@@ -104,8 +102,9 @@ terraform-azure-foundation/
 ├── environments/
 │   └── dev/
 │
-├── modules/
-│   └── resource_group/
+modules/
+├── resource_group/
+└── storage_account/
 │
 ├── README.md
 ├── LICENSE
