@@ -2,78 +2,56 @@
 
 Reusable and modular Azure infrastructure deployment using Terraform.
 
-This repository is being developed as a reusable Azure foundation framework following Terraform module design principles, Git feature branch workflows, and infrastructure-as-code best practices.
+This repository is a hands-on Azure Infrastructure-as-Code project focused on building reusable Terraform modules, implementing dependency management patterns, and following enterprise-grade Git workflows.
+
+The goal is to create a scalable Azure foundation that can be extended into a complete landing zone architecture.
 
 ---
 
-## Project Goals
+# Project Objectives
 
 * Build reusable Terraform modules for Azure resources.
-* Follow a modular architecture.
+* Follow a modular and scalable architecture.
 * Implement environment-specific deployments.
-* Maintain clear documentation and architecture diagrams.
+* Maintain architecture documentation and deployment evidence.
 * Demonstrate enterprise-style Git and GitHub workflows.
-* Create a scalable foundation for future Azure infrastructure deployments.
+* Showcase Terraform dependency management patterns.
+* Establish a foundation for future Azure Landing Zone deployments.
 
 ---
 
-## Current Status
+# Current Status
 
-### Completed
+## Completed
 
-- Repository Structure
-- Architecture Documentation
-- Resource Group Module
-- Development Environment
-- Module Validation
-- Storage Account Module
+* Repository Structure
+* Architecture Documentation
+* Development Environment
+* Resource Group Module
+* Storage Account Module
+* Module Validation Framework
 
-### In Progress
+## Dependency Patterns Demonstrated
 
-## Storage Account
-Status: 🚧 In Progress
+### Resource Group
 
-Dependency Demonstrations
+* Standalone Deployment ✅
 
-| Storage Account (Standalone)          | ✅ Completed |
-| Storage Account (Explicit Dependency) | ✅ Completed |
-| Storage Account (Implicit Dependency) | ✅ Completed |
+### Storage Account
+
+* Standalone Deployment ✅
+* Explicit Dependency Pattern ✅
+* Implicit Dependency Pattern ✅
+
 ---
 
-## Dependency Management Patterns
+# Implemented Modules
 
-This repository demonstrates multiple Terraform dependency management approaches.
+## Resource Group Module
 
-### 1. Standalone Deployment
+**Status:** ✅ Completed
 
-Resources receive all required configuration directly through input variables.
-
-### 2. Explicit Dependency
-
-Resources are ordered using:
-
-```hcl
-depends_on
-```
-
-to enforce deployment sequencing.
-
-### 3. Implicit Dependency
-
-Resources consume outputs from other modules through local value transformations.
-
-Terraform automatically builds the dependency graph without manual dependency declarations.
-
-This is the preferred Terraform approach because it scales better and keeps module contracts clean.
-
-
-## Implemented Modules
-
-### Resource Group Module
-
-Status: ✅ Completed
-
-Features:
+### Features
 
 * Multiple Resource Group deployment
 * Map-based input structure
@@ -83,49 +61,77 @@ Features:
 * Deployment verification screenshots
 * Reusable module design
 
-Module Location:
+**Module Location**
 
 ```text
 modules/resource_group
 ```
-### Storage Account Module
 
-Status: ✅ Completed
 ---
 
-## Planned Modules
+## Storage Account Module
 
-* Storage Account
+**Status:** ✅ Completed
+
+### Features
+
+* Multiple Storage Account deployment
+* Map-based input structure
+* Input validation
+* Optional tagging support
+* Standardized outputs
+* Explicit dependency demonstration
+* Implicit dependency demonstration
+* Deployment verification screenshots
+* Reusable module design
+
+**Module Location**
+
+```text
+modules/storage_account
+```
+
+---
+
+# Progress Tracker
+
+| Module                       | Status      |
+| ---------------------------- | ----------- |
+| Resource Group               | ✅ Completed |
+| Storage Account              | ✅ Completed |
+| Virtual Network (VNet)       | ⏳ Planned   |
+| Subnet                       | ⏳ Planned   |
+| Network Security Group (NSG) | ⏳ Planned   |
+| Public IP                    | ⏳ Planned   |
+| Network Interface (NIC)      | ⏳ Planned   |
+| Virtual Machine (VM)         | ⏳ Planned   |
+
+---
+
+# Planned Roadmap
+
+### Networking
+
 * Virtual Network (VNet)
 * Subnet
 * Network Security Group (NSG)
+
+### Connectivity
+
 * Public IP
 * Network Interface (NIC)
+
+### Compute
+
 * Virtual Machine (VM)
 
 ---
 
-## Progress Tracker
-
-| Module | Status |
-|----------|----------|
-| Resource Group | ✅ Completed |
-| Storage Account | ✅ Completed |
-| Explicit Dependency Demo | ✅ Completed |
-| Implicit Dependency Demo | ✅ Completed |
-| VNet | ⏳ Planned |
-| Subnet | ⏳ Planned |
-| NSG | ⏳ Planned |
-| Public IP | ⏳ Planned |
-| NIC | ⏳ Planned |
-| VM | ⏳ Planned |
----
-
-## Repository Structure
+# Repository Structure
 
 ```text
 terraform-azure-foundation/
-
+│
 ├── docs/
 │   ├── architecture/
 │   ├── diagrams/
@@ -134,9 +140,9 @@ terraform-azure-foundation/
 ├── environments/
 │   └── dev/
 │
-modules/
-├── resource_group/
-└── storage_account/
+├── modules/
+│   ├── resource_group/
+│   └── storage_account/
 │
 ├── README.md
 ├── LICENSE
@@ -145,19 +151,19 @@ modules/
 
 ---
 
-## Architecture Documentation
+# Architecture Documentation
 
-Architecture documents, design principles, diagrams, and deployment screenshots are available under:
+Architecture documents, design decisions, dependency patterns, and diagrams are maintained under:
 
 ```text
-docs/
+docs/architecture/
 ```
 
 ---
 
-## Screenshots
+# Deployment Evidence
 
-Deployment verification screenshots are maintained under:
+Deployment verification screenshots, Terraform plans, dependency graphs, and Azure Portal validation screenshots are maintained under:
 
 ```text
 docs/screenshots/
@@ -165,40 +171,57 @@ docs/screenshots/
 
 ---
 
-## Git Workflow
+# Git Workflow
 
-This project follows a feature branch workflow.
-
-Example:
+This repository follows a feature branch workflow.
 
 ```text
 main
  │
- └── feature/resource-group
-         │
-         ├── commits
-         ├── push
-         ├── pull request
-         └── merge
+ ├── feature/resource-group
+ │      └── Pull Request
+ │
+ ├── feature/storage-account
+ │      └── Pull Request
+ │
+ ├── feature/storage-account-explicit-dependency
+ │      └── Pull Request
+ │
+ └── feature/storage-account-implicit-dependency
+        └── Pull Request
 ```
 
-Future modules will be developed using dedicated feature branches and merged through Pull Requests.
+All module development is performed through feature branches and merged through Pull Requests.
 
 ---
 
-## Terraform Design Principles
+# Terraform Design Principles
 
 * Modular architecture
-* Environment agnostic modules
+* Environment-agnostic modules
 * Map-based deployments
 * Standardized outputs
-* Input validation
+* Strong input validation
 * Optional attributes where appropriate
 * Loose coupling through logical keys
-* Reusable infrastructure patterns
+* Explicit and implicit dependency patterns
+* Reusable infrastructure components
 
 ---
 
-## License
+# Future Vision
+
+This repository is evolving toward a complete Azure Infrastructure Foundation that will eventually include:
+
+* Networking
+* Security Controls
+* Compute Resources
+* Identity Integration
+* Enterprise Terraform Patterns
+* Azure Landing Zone Concepts
+
+---
+
+# License
 
 MIT License
