@@ -18,6 +18,7 @@ Modules Under Development
 
 ## 🏗️ Architecture
 
+```text
 ┌──────────────────────┐
 │  terraform.tfvars    │
 └──────────┬───────────┘
@@ -41,6 +42,7 @@ Modules Under Development
 ┌──────────────────────┐
 │ Azure Resource Groups│
 └──────────────────────┘
+```
 
 ---
 
