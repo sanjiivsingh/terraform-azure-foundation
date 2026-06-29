@@ -20,16 +20,16 @@ Modules Under Development
 
 terraform.tfvars
       |
-      V
+      v
 variables.tf
       |
-      V
+      v
 main.tf
       |
-      V
+      v
 module.resource_group
       |
-      V
+      v
 Azure Resource Groups
 
 ---
