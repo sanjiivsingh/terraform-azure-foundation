@@ -16,21 +16,31 @@ Modules Under Development
 
 ---
 
-## Architecture
+## 🏗️ Architecture
 
-terraform.tfvars
-      |
-      v
-variables.tf
-      |
-      v
-main.tf
-      |
-      v
-module.resource_group
-      |
-      v
-Azure Resource Groups
+┌──────────────────────┐
+│  terraform.tfvars    │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│    variables.tf      │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│      main.tf         │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ module.resource_group│
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Azure Resource Groups│
+└──────────────────────┘
 
 ---
 
