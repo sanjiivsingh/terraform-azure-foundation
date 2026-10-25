@@ -70,13 +70,13 @@ variable "storage_accounts" {
   }
 
   # resource group key name validation
-validation {
+  validation {
 
-  condition = alltrue([
-    for sa in var.storage_accounts :
-    contains(keys(var.resource_groups), sa.rgkey)
-  ])
+    condition = alltrue([
+      for sa in var.storage_accounts :
+      contains(keys(var.resource_groups), sa.rgkey)
+    ])
 
-  error_message = "Storage account rgkey must exist in resource_groups."
-}
+    error_message = "Storage account rgkey must exist in resource_groups."
+  }
 }

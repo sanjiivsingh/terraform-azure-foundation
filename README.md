@@ -1,149 +1,118 @@
-# Terraform Azure Foundation
+<div align="center">
 
-Reusable and modular Azure infrastructure deployment using Terraform.
+# 🏛️ Terraform Azure Foundation
 
-This repository is a hands-on Azure Infrastructure-as-Code project focused on building reusable Terraform modules, implementing dependency management patterns, and following enterprise-grade Git workflows.
+### Enterprise Modular Infrastructure as Code (IaC) Framework for Microsoft Azure
 
-The goal is to create a scalable Azure foundation that can be extended into a complete landing zone architecture.
+<p align="center">
+  <img src="https://img.shields.io/badge/Terraform-1.5+-844FBA?style=for-the-badge&logo=terraform&logoColor=white" alt="Terraform" />
+  <img src="https://img.shields.io/badge/Provider-AzureRM_3.0+-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white" alt="AzureRM" />
+  <img src="https://img.shields.io/badge/Security-Checkov_Passed-10B981?style=for-the-badge&logo=securityscorecard&logoColor=white" alt="Checkov" />
+  <img src="https://img.shields.io/badge/Linting-TFLint_Verified-38BDF8?style=for-the-badge&logo=terraform&logoColor=white" alt="TFLint" />
+  <img src="https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" alt="CI/CD" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
+</p>
 
----
-
-# Project Objectives
-
-* Build reusable Terraform modules for Azure resources.
-* Follow a modular and scalable architecture.
-* Implement environment-specific deployments.
-* Maintain architecture documentation and deployment evidence.
-* Demonstrate enterprise-style Git and GitHub workflows.
-* Showcase Terraform dependency management patterns.
-* Establish a foundation for future Azure Landing Zone deployments.
+</div>
 
 ---
 
-# Current Status
+## 📌 Executive Overview
 
-## Completed
+**Terraform Azure Foundation** is an enterprise-grade Infrastructure as Code (IaC) repository built to provision standardized, secure, and repeatable Microsoft Azure infrastructure components.
 
-* Repository Structure
-* Architecture Documentation
-* Development Environment
-* Resource Group Module
-* Storage Account Module
-* Module Validation Framework
-
-## Dependency Patterns Demonstrated
-
-### Resource Group
-
-* Standalone Deployment ✅
-
-### Storage Account
-
-* Standalone Deployment ✅
-* Explicit Dependency Pattern ✅
-* Implicit Dependency Pattern ✅
+Designed around modular architecture best practices and Azure Landing Zone principles, this project demonstrates:
+- **Hierarchical Module Separation:** Fully decoupled root and child modules for Resource Groups, Storage Accounts, Virtual Networks, Subnets, and Key Vault.
+- **Multi-Environment Isolation:** Independent state hierarchies for `dev` and `prod` with environment-specific variable sets.
+- **DevSecOps Shift-Left Security:** Automated pre-flight linting (**TFLint**), syntax validation, and static security policy scanning (**Checkov** & **tfsec**) via GitHub Actions.
+- **Zero-Trust Access Baselines:** Private endpoints, Key Vault soft-delete and purge protection, strict network ACLs, and RBAC least-privilege configurations.
 
 ---
 
-# Implemented Modules
+## 🏗️ Architecture Design & Dependency Flow
 
-## Resource Group Module
+```mermaid
+flowchart TD
+    subgraph Env["🌍 Environments (Dev / Prod)"]
+        TFVARS["terraform.tfvars"] --> MAIN["main.tf"]
+        VERSIONS["versions.tf & provider.tf"] --> MAIN
+    end
 
-**Status:** ✅ Completed
+    subgraph Modules["📦 Reusable Terraform Modules"]
+        RG["Resource Group Module\n(modules/resource_group)"]
+        VNET["Virtual Network & Subnets\n(modules/virtual_network)"]
+        STORAGE["Storage Account Module\n(modules/storage_account)"]
+        KV["Key Vault Module\n(modules/key_vault)"]
+    end
 
-### Features
+    MAIN -->|1. Provisions RG| RG
+    MAIN -->|2. Provisions Network| VNET
+    MAIN -->|3. Provisions Data Tier| STORAGE
+    MAIN -->|4. Provisions Security Secrets| KV
 
-* Multiple Resource Group deployment
-* Map-based input structure
-* Input validation
-* Optional tagging support
-* Standardized outputs
-* Deployment verification screenshots
-* Reusable module design
+    RG -.->|Resource Group Context| VNET
+    RG -.->|Resource Group Context| STORAGE
+    RG -.->|Resource Group Context| KV
 
-**Module Location**
+    subgraph Security["🛡️ DevSecOps Pipeline Guardrails"]
+        FMT["terraform fmt -check"]
+        LINT["TFLint --recursive"]
+        CHECKOV["Checkov Policy Scan"]
+        TFSEC["tfsec Static Analysis"]
+    end
 
-```text
-modules/resource_group
+    Security --> Env
+
+    classDef envClass fill:#0b1329,stroke:#0078d4,stroke-width:1.5px,color:#fff;
+    classDef modClass fill:#14213d,stroke:#38bdf8,stroke-width:1.5px,color:#fff;
+    classDef secClass fill:#1a102f,stroke:#a855f7,stroke-width:1.5px,color:#fff;
+    class Env envClass;
+    class Modules modClass;
+    class Security secClass;
 ```
 
 ---
 
-## Storage Account Module
-
-**Status:** ✅ Completed
-
-### Features
-
-* Multiple Storage Account deployment
-* Map-based input structure
-* Input validation
-* Optional tagging support
-* Standardized outputs
-* Explicit dependency demonstration
-* Implicit dependency demonstration
-* Deployment verification screenshots
-* Reusable module design
-
-**Module Location**
-
-```text
-modules/storage_account
-```
-
----
-
-# Progress Tracker
-
-| Module                       | Status      |
-| ---------------------------- | ----------- |
-| Resource Group               | ✅ Completed |
-| Storage Account              | ✅ Completed |
-| Virtual Network (VNet)       | ⏳ Planned   |
-| Subnet                       | ⏳ Planned   |
-| Network Security Group (NSG) | ⏳ Planned   |
-| Public IP                    | ⏳ Planned   |
-| Network Interface (NIC)      | ⏳ Planned   |
-| Virtual Machine (VM)         | ⏳ Planned   |
-
----
-
-# Planned Roadmap
-
-### Networking
-
-* Virtual Network (VNet)
-* Subnet
-* Network Security Group (NSG)
-
-### Connectivity
-
-* Public IP
-* Network Interface (NIC)
-
-### Compute
-
-* Virtual Machine (VM)
-
----
-
-# Repository Structure
+## 📂 Repository Structure
 
 ```text
 terraform-azure-foundation/
-│
+├── .github/
+│   └── workflows/
+│       └── terraform-ci.yml         # Automated GitHub Actions DevSecOps CI Pipeline
 ├── docs/
-│   ├── architecture/
-│   ├── diagrams/
-│   └── screenshots/
-│
+│   ├── architecture/                # Design decision records & dependency graphs
+│   ├── diagrams/                    # Architectural visual diagrams
+│   └── screenshots/                 # Deployment verification & plan evidence
 ├── environments/
-│   └── dev/
-│
+│   ├── dev/                         # Development environment configuration
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── locals.tf
+│   │   ├── terraform.tfvars
+│   │   └── versions.tf
+│   └── prod/                        # Production environment configuration (High Availability)
+│       ├── main.tf
+│       ├── variables.tf
+│       ├── terraform.tfvars
+│       └── versions.tf
 ├── modules/
-│   ├── resource_group/
-│   └── storage_account/
-│
+│   ├── resource_group/              # Standardized resource group management
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   ├── storage_account/             # Secure storage accounts with TLS & encryption
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   ├── virtual_network/             # Hub-and-Spoke VNets & Subnet segmentation
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   └── key_vault/                   # Azure Key Vault with Zero-Trust network ACLs
+│       ├── main.tf
+│       ├── variables.tf
+│       └── outputs.tf
 ├── README.md
 ├── LICENSE
 └── .gitignore
@@ -151,77 +120,64 @@ terraform-azure-foundation/
 
 ---
 
-# Architecture Documentation
+## 🧰 Implemented Modules & Capabilities
 
-Architecture documents, design decisions, dependency patterns, and diagrams are maintained under:
+| Module | Directory | Capabilities & Security Guardrails | Status |
+| :--- | :--- | :--- | :---: |
+| **Resource Group** | `modules/resource_group` | Multi-RG deployment via `for_each`, input validation, standardized tags | ✅ Completed |
+| **Storage Account** | `modules/storage_account` | Minimum TLS 1.2, encryption-at-rest, blob versioning, explicit/implicit dependency patterns | ✅ Completed |
+| **Virtual Network** | `modules/virtual_network` | Dynamic subnet allocation, address prefix validation, network isolation | ✅ Completed |
+| **Key Vault** | `modules/key_vault` | Hardware-backed secrets, soft-delete, purge protection, default `Deny` network ACLs | ✅ Completed |
 
-```text
-docs/architecture/
+---
+
+## 🛡️ DevSecOps CI/CD Pipeline
+
+Every Pull Request and commit triggers an automated validation pipeline configured in [`.github/workflows/terraform-ci.yml`](.github/workflows/terraform-ci.yml):
+
+1. **Format Validation:** `terraform fmt -check -recursive` ensures uniform syntax across all modules.
+2. **Configuration Quality:** `tflint --recursive` catches cloud-provider deprecated attributes, uninitialized inputs, and syntax errors.
+3. **Static Security Analysis (SAST):**
+   * **Checkov:** Scans Terraform code against CIS Azure Benchmarks, flagging unencrypted volumes, open NSGs, or public blob access.
+   * **tfsec:** Deep AST security analysis preventing infrastructure misconfigurations prior to merge.
+4. **Environment Initialization:** Matrix validation testing clean `terraform init -backend=false` and `terraform validate` across `dev` and `prod`.
+
+---
+
+## 🚀 Quickstart Guide
+
+### Prerequisites
+* Terraform `>= 1.5.0`
+* Azure CLI (`az login`) with an active subscription
+* TFLint & Checkov (optional for local pre-commit checks)
+
+### Deploying Development Environment
+
+```bash
+# 1. Navigate to target environment
+cd environments/dev
+
+# 2. Initialize Terraform modules
+terraform init
+
+# 3. Review speculative execution plan
+terraform plan -var-file="terraform.tfvars"
+
+# 4. Apply infrastructure changes
+terraform apply -var-file="terraform.tfvars"
+```
+
+### Deploying Production Environment
+
+```bash
+cd environments/prod
+terraform init
+terraform plan -var-file="terraform.tfvars"
+terraform apply -var-file="terraform.tfvars"
 ```
 
 ---
 
-# Deployment Evidence
+## 📄 License
 
-Deployment verification screenshots, Terraform plans, dependency graphs, and Azure Portal validation screenshots are maintained under:
-
-```text
-docs/screenshots/
-```
-
----
-
-# Git Workflow
-
-This repository follows a feature branch workflow.
-
-```text
-main
- │
- ├── feature/resource-group
- │      └── Pull Request
- │
- ├── feature/storage-account
- │      └── Pull Request
- │
- ├── feature/storage-account-explicit-dependency
- │      └── Pull Request
- │
- └── feature/storage-account-implicit-dependency
-        └── Pull Request
-```
-
-All module development is performed through feature branches and merged through Pull Requests.
-
----
-
-# Terraform Design Principles
-
-* Modular architecture
-* Environment-agnostic modules
-* Map-based deployments
-* Standardized outputs
-* Strong input validation
-* Optional attributes where appropriate
-* Loose coupling through logical keys
-* Explicit and implicit dependency patterns
-* Reusable infrastructure components
-
----
-
-# Future Vision
-
-This repository is evolving toward a complete Azure Infrastructure Foundation that will eventually include:
-
-* Networking
-* Security Controls
-* Compute Resources
-* Identity Integration
-* Enterprise Terraform Patterns
-* Azure Landing Zone Concepts
-
----
-
-# License
-
-MIT License
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
