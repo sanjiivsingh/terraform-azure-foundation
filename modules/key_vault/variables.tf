@@ -8,6 +8,7 @@ variable "key_vaults" {
     soft_delete_retention_days  = optional(number, 7)
     purge_protection_enabled    = optional(bool, true)
     sku_name                    = optional(string, "standard")
+    rbac_authorization_enabled  = optional(bool, true)
     network_acls_default_action = optional(string, "Deny")
     network_acls_ip_rules       = optional(list(string), [])
     tags                        = optional(map(string), {})

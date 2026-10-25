@@ -10,6 +10,7 @@ resource "azurerm_key_vault" "kv" {
   soft_delete_retention_days  = try(each.value.soft_delete_retention_days, 7)
   purge_protection_enabled    = try(each.value.purge_protection_enabled, true)
   sku_name                    = try(each.value.sku_name, "standard")
+  rbac_authorization_enabled  = try(each.value.rbac_authorization_enabled, true)
 
   network_acls {
     bypass         = "AzureServices"
