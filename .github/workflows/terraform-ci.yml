@@ -33,7 +33,7 @@ jobs:
         run: tflint --init
 
       - name: Run TFLint
-        run: tflint --recursive
+        run: tflint --recursive --minimum-failure-severity=error
 
   security-scan:
     name: "IaC Security (Checkov & tfsec)"
